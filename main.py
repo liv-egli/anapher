@@ -17,6 +17,7 @@ doc = nlp("")
 #     currentToken = token.text
 
 
+
 currentToken = ""
 for token in doc:
     if token.is_sent_start:
