@@ -135,11 +135,10 @@
 # print(content)
 # f.close()
 
-endingToken = "."
-punctToken = None
-for token in doc:
-    if endingToken == ',' or endingToken == ';' or endingToken == ':' or endingToken == '.' or endingToken == '!' or endingToken == '?' or endingToken == "_":
-        print(token.text)
-        punctToken = token
-    endingToken = token
+import spacy
 
+nlp = spacy.load("de_core_news_sm")
+doc = nlp("Carglass repariert, Carglass tauscht aus.")
+
+for token in doc:
+    print(token.text, token.lemma_, token.pos_, token.dep_)

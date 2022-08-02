@@ -1,7 +1,7 @@
 import spacy
 
 nlp = spacy.load("de_core_news_sm")
-f = open('Effi.txt', 'r')
+f = open('Text_Anapher.txt', 'r')
 content = f.read()
 docFaust = nlp(content)
 
