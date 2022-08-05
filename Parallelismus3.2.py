@@ -1,7 +1,9 @@
 import spacy
 
 nlp = spacy.load("de_core_news_sm")
-doc = nlp("Vertrauen ist gut, Kontrolle ist besser. Heiß ist die Liebe, kalt ist der Schnee. Ich heisse Liv.")
+f = open('Raeuber.txt', 'r')
+content = f.read()
+doc = nlp(content)
 
 
 rightRoot = False
@@ -63,7 +65,7 @@ for sent in doc.sents:
         if rightCj is True and rightRoot is True:
             if leftDepTokenC.dep_ == leftDepTokenR.dep_:
                 if rightCjToken.dep_ == rightRootToken.dep_:
-                    if auxRootToken.pos_ == auxCjToken.pos_:
+                    if testR.pos_ == testC.pos_:
                         print(leftDepTokenC.sent)
                         print(leftRootToken.dep_, testR.pos_, rightRootToken.dep_, leftCjToken.dep_, testC.pos_, rightCjToken.dep_)
 
