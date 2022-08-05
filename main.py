@@ -4,7 +4,11 @@ import spacy
 from spacy.tokens import Token
 
 nlp = spacy.load("de_core_news_sm")
-doc = nlp("")
+doc = nlp("Lang war der Weg, kurz war der Kampf.")
+
+for sent in doc.sents:
+    for token in sent:
+        print(token.text, token.dep_, token.pos_)
 # f = open('/Users/liv/Desktop/21000-0.txt', 'r')
 # content = f.read()
 # doc = nlp(content)

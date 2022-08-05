@@ -136,9 +136,43 @@
 # f.close()
 
 import spacy
+import token as token
 
 nlp = spacy.load("de_core_news_sm")
-doc = nlp("Carglass repariert, Carglass tauscht aus.")
+doc = nlp("Ich bin entdeckt, ich bin durchschaut.")
 
-for token in doc:
-    print(token.text, token.lemma_, token.pos_, token.dep_)
+previousToken = token.is_sent_start
+tokenNum = 0
+sentNum = -1
+for sent_i, sent in enumerate(doc.sents):
+    for token in sent:
+        if (sent_i == sentNum + 1) and \
+            (token.i == tokenNum):
+            if (token.dep_ == previousToken.dep_):
+                print(token.text, token.dep_)
+                print(previousToken.text, previousToken.dep_)
+            previousToken = token
+                tokenNum = token.i + 1
+                sentNum = sent_i - 1
+        sentNum = sent_i
+
+
+
+
+
+
+
+
+# previousNum = 0
+# for token in doc.sents:
+#     if len(token) == previousNum:
+#         print(token.sent)
+#     len(token) == previousNum
+
+
+
+
+
+
+
+
