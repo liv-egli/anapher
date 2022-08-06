@@ -1,20 +1,20 @@
 import spacy
 
 nlp = spacy.load("de_core_news_sm")
-f = open('Raeuber.txt', 'r')
+f = open('Faust.txt', 'r')
 content = f.read()
 doc = nlp(content)
 
-
+counter = 0
 rightRoot = False
-depTokenR = None
+rightDepTokenR = None
 auxRootToken = None
-testR = None
+finalAuxRoot = None
 rightRootToken = None
 rightCj = False
-depTokenC = None
+rightDepTokenC = None
 auxCjToken = None
-testC = None
+finalAuxCj = None
 rightCjToken = None
 leftRoot = False
 leftRootToken = None
@@ -27,19 +27,19 @@ leftCjToken = None
 for sent in doc.sents:
     for token in sent:
         if auxRootToken is not None:
-            if depTokenR == "ROOT":
+            if rightDepTokenR == "ROOT":
                 rightRoot = True
                 rightRootToken = token
-                testR = auxRootToken
-            depTokenR = token.dep_
+                finalAuxRoot = auxRootToken
+            rightDepTokenR = token.dep_
         auxRootToken = token
 
         if auxCjToken is not None:
-            if depTokenC == "cj":
+            if rightDepTokenC == "cj":
                 rightCj = True
                 rightCjToken = token
-                testC = auxCjToken
-            depTokenC = token.dep_
+                finalAuxCj = auxCjToken
+            rightDepTokenC = token.dep_
         auxCjToken = token
 
         if token.dep_ == auxTokenR:
@@ -63,18 +63,18 @@ for sent in doc.sents:
 
     if leftRoot is True and leftCj is True:
         if rightCj is True and rightRoot is True:
-            if leftDepTokenC.dep_ == leftDepTokenR.dep_:
+            if leftCjToken.dep_ == leftRootToken.dep_:
                 if rightCjToken.dep_ == rightRootToken.dep_:
-                    if testR.pos_ == testC.pos_:
-                        print(leftDepTokenC.sent)
-                        print(leftRootToken.dep_, testR.pos_, rightRootToken.dep_, leftCjToken.dep_, testC.pos_, rightCjToken.dep_)
+                    if finalAuxRoot.pos_ == finalAuxCj.pos_:
+                        if finalAuxRoot.dep_ == "ROOT":
+                            if finalAuxCj.dep_ == "cj":
+                                if rightRootToken.sent == leftCjToken.sent:
+                                    counter = counter + 1
+                                    print("0", rightRootToken.sent)
+                                    print("1", leftRootToken.dep_, finalAuxRoot.pos_, rightRootToken.dep_, leftCjToken.dep_, finalAuxCj.pos_, rightCjToken.dep_)
+                                    print("2", leftRootToken, finalAuxRoot, rightRootToken, leftCjToken, finalAuxCj, rightCjToken)
 
-
-
-
-
-
-
+print("found", counter, "parallelismus")
 
 # if rightCj is True and rightRoot is True:
 #     if auxRootToken.pos_ == auxCjToken.pos_:
@@ -86,7 +86,7 @@ for sent in doc.sents:
 #         if auxRootToken.pos_ == auxCjToken.pos_:
 #             print(leftCjToken.sent, leftCjToken, leftRootToken)
 
-
+# if leftRootToken.dep_ != "punct" and rightRootToken.dep_ != "punct":
 
 
 
