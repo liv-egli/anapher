@@ -1,7 +1,7 @@
 import spacy
 
 nlp = spacy.load("de_core_news_sm")
-f = open('Nathan.txt', 'r')
+f = open('Text_Parallelismus.txt', 'r')
 content = f.read()
 docFaust = nlp(content)
 
@@ -33,7 +33,8 @@ def findAnapher(doc):
                         (firstToken.is_punct is False) and \
                         has_same_dependency(token, firstToken) and \
                         (token.lower_ == firstToken.lower_) and \
-                        (token.lemma_ == firstToken.lemma_):
+                        (token.lemma_ == firstToken.lemma_) and \
+                        token.text is not firstToken.sent and token.text is not token.sent:
                     counter = counter + 1
                     print("0", token.text)
                     print("1", firstToken.sent)
