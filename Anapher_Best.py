@@ -1,7 +1,7 @@
 import spacy
 
 nlp = spacy.load("de_core_news_sm")
-f = open('Text_Parallelismus.txt', 'r')
+f = open("Text_Parallelismus.txt", "r")
 content = f.read()
 docFaust = nlp(content)
 

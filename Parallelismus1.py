@@ -152,8 +152,8 @@ for sent_i, sent in enumerate(doc.sents):
                 print(token.text, token.dep_)
                 print(previousToken.text, previousToken.dep_)
             previousToken = token
-                tokenNum = token.i + 1
-                sentNum = sent_i - 1
+            tokenNum = token.i + 1
+            sentNum = sent_i - 1
         sentNum = sent_i
 
 

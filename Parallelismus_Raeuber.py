@@ -37,8 +37,9 @@ for sent in doc.sents:
                             rightRootToken = next(rootToken.rights)
                             rightCjToken = next(cjToken.rights)
                             if rightRootToken.dep_ == rightCjToken.dep_ or rightRootToken.pos_ == rightCjToken.pos_:
-                                if (rightCjToken.i - leftRootToken.i) < 27 and (sent.end - rightCjToken.i) < 16:
-                                    isRightOk = True
+                                if leftRootToken is not None:
+                                    if (rightCjToken.i - leftRootToken.i) < 27 and (sent.end - rightCjToken.i) < 16:
+                                        isRightOk = True
                         elif cjToken.n_rights == 0 and rootToken.n_rights > 0 and rootToken.n_lefts > 0 and cjToken.n_lefts > 0:
                             rightCjToken = "punct"
                             rightRootToken = next(rootToken.rights)
