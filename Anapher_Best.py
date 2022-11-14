@@ -1,15 +1,15 @@
 import spacy
 
 nlp = spacy.load("de_core_news_sm")
-f = open("Text_Parallelismus.txt", "r")
+f = open("Raeuber.txt", "r")
 content = f.read()
 docFaust = nlp(content)
 
 
-# Articles only count as Anapher tokens if they are used in the same manner, i.e. if they have the same dependency
-# For other words we assume that the dependency field is not important => return True
+# Artikel zählen nur als Anapher wenn sie auf die gleiche Art und Weise gebraucht werden, also die gleiche Dependency haben.
+# für alle anderen Wörter spielt die Abhängikeit keine Rolle => return True
 def has_same_dependency(first_tkn, tkn):
-    # the lemma_ of "der", "die" or "das" is always "der"
+    # das Lemma von "der", "die" or "das" ist immer "der"
     if tkn.lemma_ == "der":
         if tkn.dep_ == first_tkn.dep_:
             return True
@@ -20,12 +20,17 @@ def has_same_dependency(first_tkn, tkn):
 
 
 def findAnapher(doc):
+    # Funktion gibt die in jedem Dokument vorhandenen Anapher zurück
     counter = 0
     previousToken = "."
+    # das erste Wort in einem Dokument soll als Satzanfang beachtet werden, weshalb das vorherige ein Satzzeichen sein muss.
     firstToken = None
     for token in doc:
+        # folgende Anweisungen werden für jedes Token im Dokument durchgeführt
         if token.is_space is False:
+            # Leerschläge und Umschläge sollen nicht beachtet werden
             if previousToken == ',' or previousToken == ';' or previousToken == ':' or previousToken == '.' or previousToken == '!' or previousToken == '?' or previousToken == "_":
+                # nur wenn das previousToken ein Satzzeichen ist, wird das folgende Wort zum firstToken
                 if (firstToken is not None) and \
                         (token.is_space is False) and \
                         (firstToken.is_space is False) and \
@@ -35,12 +40,17 @@ def findAnapher(doc):
                         (token.lower_ == firstToken.lower_) and \
                         (token.lemma_ == firstToken.lemma_) and \
                         token.text is not firstToken.sent and token.text is not token.sent:
+                    # Leerschläge und Satzzeichen sollen nicht beachtet werden
+                    # die zuvor erstellte Funktion wird hier ins Programm eingebaut
+                    # zwei aufeinanderfolgende Token nach einem Satzzeichen sollen in der Grundform und ohne Beachtung der Gross- und Kleinschreibung verglichen werden.
                     counter = counter + 1
                     print("0", token.text)
                     print("1", firstToken.sent)
                     print("2", token.sent)
                 firstToken = token
+                # das Token nach einem Satzzeichen wird immer zum firstToken
             previousToken = token.text
+            # das previous Token ist immer das letzte Wort, das durch die Schlaufe gegangen ist, also immer das Wort vorher
     return counter
 
 
