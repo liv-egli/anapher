@@ -1,7 +1,7 @@
 import spacy
 
 nlp = spacy.load("de_core_news_sm")
-f = open("KabaleUndLiebe.txt", "r")
+f = open("Eichendorff.txt", "r")
 content = f.read()
 doc = nlp(content)
 

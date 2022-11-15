@@ -22,14 +22,14 @@ def has_same_dependency(first_tkn, tkn):
 def findAnapher(doc):
     # Funktion gibt die in jedem Dokument vorhandenen Anapher zurück
     counter = 0
-    previousToken = "."
+    # previousToken = "."
     # das erste Wort in einem Dokument soll als Satzanfang beachtet werden, weshalb das vorherige ein Satzzeichen sein muss.
     firstToken = None
     for token in doc:
         # folgende Anweisungen werden für jedes Token im Dokument durchgeführt
         if token.is_space is False:
             # Leerschläge und Umschläge sollen nicht beachtet werden
-            if previousToken == ',' or previousToken == ';' or previousToken == ':' or previousToken == '.' or previousToken == '!' or previousToken == '?' or previousToken == "_":
+            if token.is_sent_start:
                 # nur wenn das previousToken ein Satzzeichen ist, wird das folgende Wort zum firstToken
                 if (firstToken is not None) and \
                         (token.is_space is False) and \
@@ -48,9 +48,7 @@ def findAnapher(doc):
                     print("1", firstToken.sent)
                     print("2", token.sent)
                 firstToken = token
-                # das Token nach einem Satzzeichen wird immer zum firstToken
-            previousToken = token.text
-            # das previous Token ist immer das letzte Wort, das durch die Schlaufe gegangen ist, also immer das Wort vorher
+                # das Satzanfang-Token wird immer zum firstToken um mit dem nächsten Satzanfang-Token verglichen werden zu können
     return counter
 
 
