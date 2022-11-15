@@ -48,7 +48,7 @@ def findAnapher(doc):
                     print("1", firstToken.sent)
                     print("2", token.sent)
                 firstToken = token
-                # das Satzanfang-Token wird immer zum firstToken um mit dem nächsten Satzanfang-Token verglichen werden zu können
+                # das Satzanfang-Token wird immer zum firstToken, um mit dem nächsten Satzanfang-Token verglichen werden zu können
     return counter
 
 
