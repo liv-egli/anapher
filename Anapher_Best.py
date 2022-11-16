@@ -5,6 +5,10 @@ f = open("Raeuber.txt", "r")
 content = f.read()
 docFaust = nlp(content)
 
+NORMAL = '\033[0m'
+BLUE = '\033[94m'
+RED = '\033[91m'
+YELLOW = '\033[93m'
 
 # Artikel zählen nur als Anapher wenn sie auf die gleiche Art und Weise gebraucht werden, also die gleiche Dependency haben.
 # für alle anderen Wörter spielt die Abhängikeit keine Rolle => return True
@@ -44,9 +48,9 @@ def findAnapher(doc):
                     # die zuvor erstellte Funktion wird hier ins Programm eingebaut
                     # zwei aufeinanderfolgende Token nach einem Satzzeichen sollen in der Grundform und ohne Beachtung der Gross- und Kleinschreibung miteinander verglichen werden.
                     counter = counter + 1
-                    print("0", token.text)
-                    print("1", firstToken.sent)
-                    print("2", token.sent)
+                    print("\n----\n", YELLOW + token.text)
+                    print(BLUE + "1", NORMAL + str(firstToken.sent))
+                    print(RED + "2", NORMAL + str(token.sent))
                 firstToken = token
                 # das Token nach einem Satzzeichen wird immer zum firstToken
             previousToken = token.text
