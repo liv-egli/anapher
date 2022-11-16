@@ -55,4 +55,7 @@ for token in doc:
         previousToken = token.text
         # das previous Token ist immer das letzte Wort, das durch die Schlaufe gegangen ist, also immer das Wort vorher
 
-print("found", counter, "anapher")
+print("\n 0 0")
+print("¨ ^ ¨", "\n", "\__/")
+
+print("\n", "found", counter, "anapher")
