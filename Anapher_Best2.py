@@ -1,4 +1,6 @@
 import spacy
+import time
+start_time = time.time()
 
 nlp = spacy.load("de_core_news_sm")
 f = open("Raeuber.txt", "r")
@@ -9,6 +11,7 @@ NORMAL = '\033[0m'
 BLUE = '\033[94m'
 RED = '\033[91m'
 YELLOW = '\033[93m'
+BOLD = '\033[1m'
 
 # Artikel zählen nur als Anapher wenn sie auf die gleiche Art und Weise gebraucht werden, also die gleiche Dependency haben.
 # für alle anderen Wörter spielt die Abhängikeit keine Rolle => return True
@@ -58,4 +61,4 @@ for token in doc:
 print("\n 0 0")
 print("¨ ^ ¨", "\n", "\__/")
 
-print("\n", "found", counter, "anapher")
+print("\n", "wow, you're so intelligent; you just found", BOLD + str(counter), "anapher", NORMAL + "in only %s seconds!" % (time.time() - start_time))

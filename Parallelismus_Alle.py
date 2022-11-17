@@ -105,4 +105,4 @@ for sent in doc.sents:
                                       RED + str(cjToken), YELLOW + str(rightCjToken), "\n", NORMAL + str(leftRootToken.sent))
                                 counter = counter + 1
 
-print("found", counter, "parallelismi")
+print("\n(:----------------END----------------:)\n", "found", counter, "parallelismi in", file)
