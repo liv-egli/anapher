@@ -49,6 +49,7 @@ for token in doc:
                 # die zuvor erstellte Funktion wird hier ins Programm eingebaut
                 # zwei aufeinanderfolgende Token nach einem Satzzeichen sollen in der Grundform und ohne Beachtung der Gross- und Kleinschreibung miteinander verglichen werden.
                 counter = counter + 1
+                print("\n", "------", "\n", "\n", "firstToken: ", YELLOW + firstToken.text)
                 print(BLUE + "1", NORMAL + str(firstToken.sent))
                 if firstToken.sent != token.sent:
                     print(RED + "2", NORMAL + str(token.sent))
@@ -57,7 +58,6 @@ for token in doc:
         previousToken = token.text
         # das previous Token ist immer das letzte Wort, das durch die Schlaufe gegangen ist, also immer das Wort vorher
 
-print("\n 0 0")
-print("¨ ^ ¨", "\n", "\__/")
+print("\n(:----------------END----------------:)\n")
 
-print("\n", "wow, you're so intelligent; you just found", BOLD + str(counter), "anapher", NORMAL + "in only %s seconds!" % (time.time() - start_time))
+print("\n", "found", BOLD + str(counter), "anapher", NORMAL + "in only %s seconds!" % (time.time() - start_time))

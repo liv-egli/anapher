@@ -60,4 +60,6 @@ def findAnapher(doc):
 
 result = findAnapher(docFaust)
 
+print("\n 0 0")
+print("¨ ^ ¨", "\n", "\__/")
 print("found", result, "anapher")

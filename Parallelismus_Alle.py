@@ -1,7 +1,8 @@
 import spacy
 
-print("Find parallelismus in...")
+print("Please enter desired file below:")
 file = input("")
+print("Searching", file, "for parallelism, please wait a moment :-)")
 nlp = spacy.load("de_core_news_sm")
 f = open(file, "r")
 content = f.read()
