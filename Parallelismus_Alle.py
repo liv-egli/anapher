@@ -1,5 +1,6 @@
 import spacy
 
+print("Find parallelismus in...")
 file = input("")
 nlp = spacy.load("de_core_news_sm")
 f = open(file, "r")

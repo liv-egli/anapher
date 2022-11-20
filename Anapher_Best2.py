@@ -49,8 +49,6 @@ for token in doc:
                 # die zuvor erstellte Funktion wird hier ins Programm eingebaut
                 # zwei aufeinanderfolgende Token nach einem Satzzeichen sollen in der Grundform und ohne Beachtung der Gross- und Kleinschreibung miteinander verglichen werden.
                 counter = counter + 1
-                firstToken = YELLOW + str(firstToken)
-                print("\n----\n", firstToken in firstToken.sent)
                 print(BLUE + "1", NORMAL + str(firstToken.sent))
                 if firstToken.sent != token.sent:
                     print(RED + "2", NORMAL + str(token.sent))
