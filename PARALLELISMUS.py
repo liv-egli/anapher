@@ -2,16 +2,17 @@ import spacy
 
 print("Please enter desired file below:")
 file = input("")
+# das gewünschte Dokument muss unter dem Output eingefügt werden (z. B. Faust.txt)
 print("Searching", file, "for parallelism, please wait a moment :-)")
 nlp = spacy.load("de_core_news_sm")
 f = open(file, "r")
 content = f.read()
 doc = nlp(content)
 
-NORMAL = '\033[0m'
-BLUE = '\033[94m'
-RED = '\033[91m'
-YELLOW = '\033[93m'
+NORMAL = "\033[0m"
+BLUE = "\033[94m"
+RED = "\033[91m"
+YELLOW = "\033[93m"
 
 counter = 0
 leftRootToken = None
