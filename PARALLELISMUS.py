@@ -76,8 +76,10 @@ for sent in doc.sents:
                                         if leftRootToken.dep_ == leftCjToken.dep_ or leftRootToken.pos_ == leftCjToken.pos_:
                                             isLeftOk = True
                             if isLeftOk is True and isRightOk is True:
-                                print("\n----\n", leftRootToken, rootToken, rightRootToken, leftCjToken, cjToken,
-                                      rightCjToken, "\n", leftRootToken.sent)
+                                print("\n----\n", BLUE + str(leftRootToken), RED + str(rootToken),
+                                      YELLOW + str(rightRootToken), BLUE + str(leftCjToken),
+                                      RED + str(cjToken), YELLOW + str(rightCjToken), "\n",
+                                      NORMAL + str(leftRootToken.sent))
                                 counter = counter + 1
 
                         else:
